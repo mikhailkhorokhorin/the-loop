@@ -4,7 +4,7 @@
 
 ## Документация
 
-**[Research-документ](https://docs.google.com/document/d/1YOa7Vb-dy4ITkdo1S_XU8oyxZ8B7VwaamRjzumE0iCY/edit?usp=sharing)
+**[Research-документ](https://docs.google.com/document/d/1YOa7Vb-dy4ITkdo1S_XU8oyxZ8B7VwaamRjzumE0iCY/edit?usp=sharing)**
 
 ### Полный план работы 
 
