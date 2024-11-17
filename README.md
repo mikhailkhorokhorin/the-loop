@@ -1,4 +1,5 @@
 # The-Loop
+![](https://github.com/mikhailkhorokhorin/the-loop/blob/main/logo.jpg)
 
 **Проект по ВАРКТ команды "полетики-самолетики✈️" 106 группы** 
 
