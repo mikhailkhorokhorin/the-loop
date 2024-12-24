@@ -78,7 +78,7 @@ def collect_data() -> None:
             flight_loop_data["y_start"].append(int(vessel.flight().mean_altitude) - start_mean_altitude)
 
 
-# Функция, записывающая данные во время всего полета и петли в словари с временным интервалом в 1 секунду.
+# Функция, записывающая данные во время всего полета и петли в словари с временным интервалом в 0.6 секунд.
 def collect_data_sleep() -> None:
     while not finish:
         time.sleep(0.6)
