@@ -197,6 +197,7 @@ def make_loop() -> None:
 
 # Функция, отвечающая за I этап выполнения полета - разгон и взлёт.
 def start() -> None:
+    vessel.control.lights = True
     vessel.control.throttle = 1.0
     vessel.control.activate_next_stage()
 
@@ -218,6 +219,7 @@ def start() -> None:
     vessel.control.sas = True
     vessel.control.pitch = 0
     vessel.control.wheels = False
+    vessel.control.lights = False
 
     stabilize_heading_to(90)
     time.sleep(0.5)
