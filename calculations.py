@@ -168,7 +168,6 @@ def collect_data(alpha: float) -> None:
     calculations_data["angle"].append(alpha)
     calculations_data["v_x"].append(v_x)
     calculations_data["v_y"].append(v_y)
-    calculations_data["Fc"].append(Fc)
 
 
 # Функция, записывающая данные атематической модели в файл calculations_data.json.
