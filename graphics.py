@@ -107,16 +107,6 @@ def show_overload_graphic() -> None:
     plt.show()
 
 
-# Функция, выводящая на экран сравнение графиков зависимости центробежной силы от времени математической модели и данных полета.
-def show_centrifugal_force_graphic() -> None:
-    plt.subplot(1, 1, 1)
-    plt.plot(calculations_data["t"], calculations_data["Fc"])
-    plt.title("График зависимости центробежной силы от времени")
-    plt.xlabel("Время, с")
-    plt.ylabel("Центробежная сила, Н")
-    plt.show()
-
-
 # Точка входа в программу.
 def main() -> None:
     load_data()
@@ -125,7 +115,6 @@ def main() -> None:
     show_angle_graphic()
     show_speed_graphic()
     show_overload_graphic()
-    show_centrifugal_force_graphic()
 
 
 if __name__ == "__main__":
