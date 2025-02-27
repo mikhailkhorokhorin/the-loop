@@ -1,5 +1,5 @@
 # The-Loop
-![](logo.jpg)
+<img src="logo.jpg" alt="Image" height="400" width="400">
 
 ## Документация
 
