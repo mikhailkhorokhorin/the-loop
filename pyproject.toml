@@ -1,7 +1,7 @@
 [project]
 name = "the-loop"
 version = "0.1.0"
-description = "student project"
+description = "Student project"
 authors = [
     {name = "полетики-самолетики"}
 ]
