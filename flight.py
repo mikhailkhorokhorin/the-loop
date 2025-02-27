@@ -11,16 +11,16 @@ ref_frame = vessel.orbit.body.reference_frame  # Инициализация пе
 vessel.control.sas = False  # Отключение модуля SAS.
 
 # Инициализируем переменные:
-target_start_speed = 80  # Целевая скорость самолета при разгоне (м/с).
-target_turn_speed = 195  # Целевая скорость самолета перед разворотом (м/с).
-target_final_speed = 250  # Целевая скорость самолета перед выполнением маневра (м/с).
-target_pitch_up = 15  # Целевой угол наклона самолета при взлете (°).
-target_pitch_down = -1  # Целевой угол наклона самолета при посадке (°).
-target_altitude = 1000  # Целевая высота, на которой оканчивается этап взлета самолета (м).
-horizontal_pitch = 0  # Целевой Курс самолета по оси Ox относительно горизонта (°).
+TARGET_START_SPEED = 80  # Целевая скорость самолета при разгоне (м/с).
+TARGET_TURN_SPEED = 195  # Целевая скорость самолета перед разворотом (м/с).
+TARGET_FINAL_SPEED = 250  # Целевая скорость самолета перед выполнением маневра (м/с).
+TARGET_PITCH_UP = 15  # Целевой угол наклона самолета при взлете (°).
+TARGET_PITCH_DOWN = -1  # Целевой угол наклона самолета при посадке (°).
+TARGET_ALTITUDE = 1000  # Целевая высота, на которой оканчивается этап взлета самолета (м).
+HORIZONTAL_PITCH = 0  # Целевой Курс самолета по оси Ox относительно горизонта (°).
 
 # Инициализируем переменные-флаги:
-finish = False
+is_finished = False
 in_loop = False
 
 # Инициализируем словарь, в дальнейшем использующийся для записи данных всего полета по ключам.
@@ -65,7 +65,7 @@ def collect_data() -> None:
     x0 = vessel.position(ref_frame)[0]
     start_mean_altitude = int(vessel.flight().mean_altitude)
 
-    while not finish:
+    while not is_finished:
         flight_data["x_kerbin"].append(round(vessel.position(ref_frame)[0], 3))
         flight_data["y_kerbin"].append(round(vessel.position(ref_frame)[2], 3))
         flight_data["x_start"].append(vessel.position(ref_frame)[0] - x0)
@@ -80,7 +80,7 @@ def collect_data() -> None:
 
 # Функция, записывающая данные во время всего полета и петли в словари с временным интервалом в 0.6 секунд.
 def collect_data_sleep() -> None:
-    while not finish:
+    while not is_finished:
         time.sleep(0.6)
         speed = int(vessel.flight(ref_frame).speed)
 
@@ -202,15 +202,15 @@ def start() -> None:
     vessel.control.activate_next_stage()
 
     while True:
-        if vessel.flight(ref_frame).horizontal_speed >= target_start_speed:
+        if vessel.flight(ref_frame).horizontal_speed >= TARGET_START_SPEED:
             break
 
     current_pitch = vessel.flight().pitch
 
-    while abs(current_pitch - target_pitch_up) > 1:
-        if current_pitch < target_pitch_up:
+    while abs(current_pitch - TARGET_PITCH_UP) > 1:
+        if current_pitch < TARGET_PITCH_UP:
             vessel.control.pitch = 0.1
-        elif current_pitch > target_pitch_up:
+        elif current_pitch > TARGET_PITCH_UP:
             vessel.control.pitch = -0.1
         else:
             break
@@ -226,16 +226,16 @@ def start() -> None:
     stabilize_roll_to(0)
 
     while True:
-        if vessel.flight().mean_altitude >= target_altitude:
+        if vessel.flight().mean_altitude >= TARGET_ALTITUDE:
             vessel.control.sas = False
             break
 
     current_pitch = vessel.flight().pitch
 
-    while abs(current_pitch - horizontal_pitch) > 1:
-        if current_pitch < horizontal_pitch:
+    while abs(current_pitch - HORIZONTAL_PITCH) > 1:
+        if current_pitch < HORIZONTAL_PITCH:
             vessel.control.pitch = 0.1
-        elif current_pitch > horizontal_pitch:
+        elif current_pitch > HORIZONTAL_PITCH:
             vessel.control.pitch = -0.1
         else:
             break
@@ -258,7 +258,7 @@ def perform_loop() -> None:
     in_loop = True
 
     while True:
-        if vessel.flight(ref_frame).speed >= target_final_speed:
+        if vessel.flight(ref_frame).speed >= TARGET_FINAL_SPEED:
             start_x_dir = vessel.flight(ref_frame).direction[0]
             break
 
@@ -292,7 +292,7 @@ def perform_loop() -> None:
 # Функция, отвечающая за III этап выполнения полета - разворот.
 def turn() -> None:
     while True:
-        if vessel.flight(ref_frame).horizontal_speed >= target_turn_speed:
+        if vessel.flight(ref_frame).horizontal_speed >= TARGET_TURN_SPEED:
             break
 
     global in_loop
@@ -323,7 +323,7 @@ def turn() -> None:
 
     current_pitch = vessel.flight().pitch
 
-    while abs(current_pitch - horizontal_pitch) > 0.5:
+    while abs(current_pitch - HORIZONTAL_PITCH) > 0.5:
         vessel.control.pitch = 0.5
         current_pitch = vessel.flight().pitch
 
@@ -336,10 +336,10 @@ def end() -> None:
     current_pitch = vessel.flight().pitch
     vessel.control.throttle = 0
 
-    while abs(current_pitch - target_pitch_down) > 0.5:
-        if current_pitch > target_pitch_down:
+    while abs(current_pitch - TARGET_PITCH_DOWN) > 0.5:
+        if current_pitch > TARGET_PITCH_DOWN:
             vessel.control.pitch = -0.1
-        elif current_pitch < target_pitch_down:
+        elif current_pitch < TARGET_PITCH_DOWN:
             vessel.control.pitch = 0.1
         current_pitch = vessel.flight().pitch
 
@@ -361,7 +361,7 @@ def end() -> None:
 
     current_pitch = vessel.flight().pitch
 
-    while current_pitch < horizontal_pitch:
+    while current_pitch < HORIZONTAL_PITCH:
         vessel.control.pitch = 0.1
         current_pitch = vessel.flight().pitch
 
@@ -379,8 +379,8 @@ def end() -> None:
             vessel.control.lights = False
             break
 
-    global finish
-    finish = True
+    global is_finished
+    is_finished = True
 
 
 # Точка входа в программу.
