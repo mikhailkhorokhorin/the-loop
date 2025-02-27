@@ -1,5 +1,5 @@
 # The-Loop
-![](https://github.com/mikhailkhorokhorin/the-loop/blob/main/logo.jpg)
+![](logo.jpg)
 
 ## Документация
 
