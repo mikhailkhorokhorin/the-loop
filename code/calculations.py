@@ -45,14 +45,14 @@ def load_data() -> None:
 # Функция, загружающая данные мертвой петли из другого файла.
 def load_flight_loop_data() -> None:
     global flight_loop_data
-    with open("flight_loop_data.json", "r") as file:
+    with open("../data/flight_loop_data.json", "r") as file:
         flight_loop_data = json.load(file)
 
 
 # Функция, загружающая стартовые данные для математической модели из другого файла.
 def load_start_data() -> None:
     global start_data
-    with open("start_data.json", "r") as file:
+    with open("../data/start_data.json", "r") as file:
         start_data = json.load(file)
 
 
@@ -171,7 +171,7 @@ def collect_data(alpha: float) -> None:
 
 # Функция, записывающая данные атематической модели в файл calculations_data.json.
 def write_data() -> None:
-    with open("calculations_data.json", "w") as file:
+    with open("../data/calculations_data.json", "w") as file:
         json.dump(calculations_data, file, indent=4)
 
 

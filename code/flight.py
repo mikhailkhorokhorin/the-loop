@@ -128,19 +128,19 @@ def write_data() -> None:
 
 # Функция, записывающая данные всего полета в файл flight_data.json.
 def write_flight_data() -> None:
-    with open("flight_data.json", "w") as file:
+    with open("../data/flight_data.json", "w") as file:
         json.dump(flight_data, file, indent=4)
 
 
 # Функция, записывающая данные мертвой петли в файл flight_loop_data.json.
 def write_flight_loop_data() -> None:
-    with open("flight_loop_data.json", "w") as file:
+    with open("../data/flight_loop_data.json", "w") as file:
         json.dump(flight_loop_data, file, indent=4)
 
 
 # Функция, записывающая стартовые данные для математической модели в файл start_data.json.
 def write_start_data() -> None:
-    with open("start_data.json", "w") as file:
+    with open("../data/start_data.json", "w") as file:
         json.dump(start_data, file, indent=4)
 
 

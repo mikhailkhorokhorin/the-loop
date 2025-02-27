@@ -18,21 +18,21 @@ def load_data() -> None:
 # Функция, загружающая данные всего полета из другого файла.
 def load_flight_data() -> None:
     global flight_data
-    with open("flight_data.json", "r") as file:
+    with open("../data/flight_data.json", "r") as file:
         flight_data = json.load(file)
 
 
 # Функция, загружающая данные мертвой петли из другого файла.
 def load_flight_loop_data() -> None:
     global flight_loop_data
-    with open("flight_loop_data.json", "r") as file:
+    with open("../data/flight_loop_data.json", "r") as file:
         flight_loop_data = json.load(file)
 
 
 # Функция, загружающая данные математической модели из другого файла.
 def load_calculations_data() -> None:
     global calculations_data
-    with open("calculations_data.json", "r") as file:
+    with open("../data/calculations_data.json", "r") as file:
         calculations_data = json.load(file)
 
 
